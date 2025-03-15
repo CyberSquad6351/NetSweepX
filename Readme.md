@@ -1,117 +1,119 @@
-# 🚀 NetSweepX - Advanced WiFi Network Scanner & Deauth Tool
+# NetSweepX - Network Scanner and Deauthentication Tool
+
+![Banner](https://img.shields.io/badge/NetSweepX-Wireless%20Network%20Scanner-blue)
 
 ## ⚠️ LEGAL DISCLAIMER
-**NetSweepX is strictly for educational and authorized penetration testing purposes only.**  
-Unauthorized use of this tool to attack networks **without explicit permission** is **illegal** and may lead to severe legal consequences.  
-The developers are **not responsible for any misuse** of this tool.  
 
----
+**THIS TOOL IS FOR EDUCATIONAL PURPOSES AND AUTHORIZED PENETRATION TESTING ONLY**
 
-## 📌 About NetSweepX
-**NetSweepX** is a powerful Python-based tool designed for **WiFi network scanning and deauthentication attacks**.  
-It helps penetration testers and cybersecurity professionals to:  
+Use only on networks you own or have explicit permission to test. Team @Cyber_Squad6351 is not responsible for anything that happens. Use at your own risk.
 
-✔ Scan nearby WiFi networks & connected clients 📡  
-✔ Enable **Monitor Mode** on supported wireless interfaces ⚙️  
-✔ Perform **Deauthentication Attacks** to test WiFi security 🔥  
-✔ Detect & list connected clients on access points 🖥️  
+By using this tool, you agree to use it responsibly and ethically, only on networks you own or have explicit permission to test.
 
-> **Designed By:** [@Cyber_Squad6351](https://cybersquad6351.netlify.app)  
-> **Version:** 1.2  
-> **Supported OS:** Linux (Kali, Parrot, Ubuntu)  
+## Description
 
----
+NetSweepX is an advanced wireless network scanner and deauthentication tool designed for security professionals and network administrators. It allows for the discovery of wireless access points and connected clients, as well as the ability to perform deauthentication attacks for security testing purposes.
 
-## 🛠️ Installation & Setup  
+## Features
 
-### **1️⃣ Install Required Dependencies**
-Ensure your system has **Python 3** installed. Then, install the required dependencies:    
+- **Wireless Network Scanning**: Discover nearby wireless networks and their details
+- **Client Detection**: Identify devices connected to discovered networks
+- **Monitor Mode**: Enable/disable monitor mode on wireless interfaces
+- **Deauthentication Attack**: Perform targeted or broadcast deauthentication attacks for security testing
+- **Cross-Platform**: Support for both Linux and Windows systems (with limitations on Windows)
 
+## Requirements
+
+- Python 3.6+
+- Scapy library
+- Wireless network adapter with monitor mode support
+- Administrator/root privileges
+
+## Installation
 
 ```bash
-sudo apt update && sudo apt install aircrack-ng iw net-tools python3-pip
+# Clone the repository
+git clone https://github.com/cybersquad6351/NetSweepX.git
+
+# Change to the directory
+cd NetSweepX
+
+# Install required dependencies
 pip install -r requirements.txt
+
+# Make the script executable
+chmod +x NetSweepX.py
 ```
 
-### **2️⃣ Check Wireless Interface**
-Before running NetSweepX, confirm that your WiFi adapter supports **Monitor Mode**:  
+## Usage
+
+The tool requires administrator/root privileges to enable monitor mode and perform packet injection:
 
 ```bash
-sudo airmon-ng
-```
-If your WiFi card **does not support monitor mode**, you may need an external adapter like **ALFA AWUS036NHA**.
-
-### **3️⃣ Enable Monitor Mode (Optional)**
-If NetSweepX does not enable monitor mode automatically, manually enable it:  
-
-```bash
-sudo airmon-ng start wlan0
-```
-This will change the interface to **wlan0mon**.
-
----
-
-## 🚀 Usage Guide
-
-### **1️⃣ Run NetSweepX**
-Use root privileges to start the tool:  
-```bash
+# On Linux
 sudo python3 NetSweepX.py
+
+# On Windows (run as administrator)
+python NetSweepX.py
 ```
 
-### **2️⃣ Select Wireless Interface**
-Pick your **wireless interface** from the available options.
+### Main Menu Options
 
-### **3️⃣ Enable Monitor Mode**
-Enable **monitor mode** to start network scanning.
+1. **Select Wireless Interface**: Choose the wireless adapter to use
+2. **Enable Monitor Mode**: Switch the selected interface to monitor mode
+3. **Scan for Networks**: Discover nearby wireless networks and connected clients
+4. **List Discovered Networks**: View details of discovered access points and clients
+5. **Perform Deauthentication Attack**: Execute targeted or broadcast deauthentication
+6. **Disable Monitor Mode**: Return the interface to normal managed mode
+7. **Exit**: Close the application
 
-### **4️⃣ Scan for Networks**
-Find available WiFi networks & connected clients.
+## Windows Compatibility Note
 
-### **5️⃣ Perform Deauthentication Attack**
-Use **deauth packets** to disconnect clients from a WiFi network (⚠️ **Authorized use only!**).
+Full functionality on Windows requires specialized hardware and drivers. Standard Windows WiFi adapters have limited monitor mode and packet injection support. For best results on Windows:
+
+- Use compatible external wireless adapters designed for penetration testing
+- Install appropriate drivers that support monitor mode and packet injection
+- Run with administrator privileges
+
+## How It Works
+
+NetSweepX operates by:
+
+1. **Scanning**: Putting the wireless interface in monitor mode to capture all wireless frames
+2. **Network Discovery**: Identifying access points through beacon frames
+3. **Client Detection**: Monitoring data frames to identify devices connected to networks
+4. **Deauthentication**: Sending specially crafted packets to disconnect clients from networks
+
+## Legitimate Use Cases
+
+- Wireless network security auditing
+- Testing network access controls
+- Identifying unauthorized access points
+- Verifying client isolation policies
+- Demonstrating wireless vulnerabilities for educational purposes
+
+## Developer Information
+
+- **Developer**: Aditya Mishra
+- **Email**: mishraaditya.skm14@gmail.com
+- **Website**: [cybersquad6351.netlify.app](https://cybersquad6351.netlify.app)
+- **Instagram**: [@cyber__squad6351](https://www.instagram.com/cyber__squad6351/)
+- **YouTube**: [Cyber_Squad6351](https://www.youtube.com/channel/Cyber_Squad6351)
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## Acknowledgments
+
+- This tool was created for educational purposes to understand wireless network security
+- Thanks to the Scapy project for providing the packet manipulation library
+- Thanks to all community members who provided feedback and suggestions
 
 ---
 
-## 🛡️ Security & Ethical Usage
-- **For penetration testers:** Use this tool for **authorized security audits** only.
-- **For WiFi admins:** Detect deauth attacks using **Wireshark or Kismet**.
-- **Prevent deauth attacks:** Use **WPA3 & PMF (Protected Management Frames)**.
+⚠️ **Remember**: Always obtain proper authorization before conducting any wireless network testing.
 
 ---
 
-## 🔧 Troubleshooting
-
-### **❓ Monitor Mode Not Working?**
-Try enabling monitor mode manually:
-```bash
-sudo airmon-ng check kill
-sudo airmon-ng start wlan0
-```
-Then, restart **NetSweepX**.
-
-### **❓ Packet Injection Not Working?**
-Run a test:
-```bash
-sudo aireplay-ng --test wlan0mon
-```
-If injection **fails**, your adapter **does not support packet injection**.
-
-### **❓ Windows Support?**
-❌ Windows does **not** fully support monitor mode or packet injection.  
-💡 Consider using **Kali Linux on a live USB or virtual machine**.
-
----
-
-## ✨ Contributors & Contact
-- **Author:** [@Cyber_Squad6351](https://cybersquad6351.netlify.app)  
-- **Instagram:** [Cyber__Squad6351](https://www.instagram.com/Cyber__Squad6351)  
-- **Email:** mishraaditya.skm14@gmail.com  
-- **YouTube:** [Cyber_Squad6351](https://www.youtube.com/channel/UCyourchannel)  
-
-> **Found a bug?** Open an issue on [GitHub](https://github.com/yourrepo/NetSweepX).
-
----
-
-## 📝 License
-This project is **open-source** under the **MIT License**.
+© 2025 Cyber Squad | Created for Network Security Education
